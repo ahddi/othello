@@ -18,5 +18,7 @@ ui_term.o:
 plateau.o:
 	$(CC) $(CFLAGS) src/plateau.c -o build/plateau.o -c
 
+clean:
+	rm -rf build/*.o bin/othello
 
 # end

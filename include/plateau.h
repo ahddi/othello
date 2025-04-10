@@ -30,18 +30,27 @@ void initPlateau(plateau p);
 coup *creerCoup(plateau p, int x, int y, int joueur);
 
 /* Libère la zone mémoire d'un coup
- * NB : je separerai creerCoup en deux fonctions pour n'avoir
- * qu'un ou deux pointeurs créés tout au long de la partie (histoire d'opti meme
- * si c pas hyper important), mais plus tard pcq là bon
  */
 void libererCoup(coup *c);
 
 /* Renvoie la validité d'un coup */
 int estCoupValide(coup *c);
 
+/* Retourne les pions d'une ligne selon le coup joué */
+void retournerPions(coup *c);
+
+/* Renvoie le nombre de coups valides sur le plateau */
+int nbCoupsValides(plateau p, int joueur);
+
+/* Renvoie 1 si le joueur a gagné, 0 s'il a perdu */
+int positionGagnante(plateau p, int joueur);
+
 /* Joue un coup :
  * place le pion correspondant sur le plateau
  */
 void jouerCoup(coup *c);
+
+/* Fait jouer l'ordi avec un coup valide aléatoire */
+int jouerOrdi(plateau p, int ordi);
 
 #endif

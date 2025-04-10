@@ -3,6 +3,7 @@
 #include "../include/plateau.h"
 
 #include <stdlib.h>
+#include <stdio.h>
 
 int boucleJeu(int joueurCommence){
   plateau p = NULL;
@@ -20,11 +21,17 @@ int boucleJeu(int joueurCommence){
     afficherPlateauTerminal(p);
     switch(tour){
     case 0:
-      tourOrdi(p, o);
+      jouerOrdi(p, o);
+      if (positionGagnante(p, o)){
+	printf("Victoire de l'ordi !!\n");
+      }
       tour++;
       break;
     case 1:
-      tourJoueur(p, j);
+      tourJoueurTerminal(p, j);
+      if (positionGagnante(p, j)){
+	printf("Victoire du joueur !!\n");
+      }
       tour--;
       break;
     }

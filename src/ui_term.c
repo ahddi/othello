@@ -28,30 +28,35 @@ void afficherPlateauTerminal(plateau p){
   return;
 }
 
-int tourJoueur(plateau p, int joueur){
+int tourJoueurTerminal(plateau p, int joueur){
   int x, y;
   char tmp;
   coup *c;
+  int statut = 0;
 
-  printf("Quel coup souhaitez-vous jouer ?\n");
-  printf("Quelle ligne ? : \n");
-  if (scanf("%d", &x) != 1) return 0;
-  viderBuffer();
-  printf("Quelle colonne ? : \n");
-  if (scanf("%c", &tmp) != 1) return 0;
-  y = tmp - 'A' + 1;
+  while (statut == 0){
+    printf("Quel coup souhaitez-vous jouer ?\n");
+    printf("Quelle ligne ? : \n");
+    if (scanf("%d", &x) != 1) return 0;
+    viderBuffer();
+    printf("Quelle colonne ? : \n");
+    if (scanf("%c", &tmp) != 1) return 0;
+    y = tmp - 'A' + 1;
 
-  if ( (c = creerCoup(p, x, y, joueur)) == NULL) return 0;
+    if ( (c = creerCoup(p, x - 1, y - 1, joueur)) == NULL) return 0;
 
-  jouerCoup(c);
-
-  libererCoup(c);
+    if (estCoupValide(c)){
+      jouerCoup(c);
+      statut = 1;
+      libererCoup(c);
+    }else{
+      printf("Coup invalide !!!\n");
+      libererCoup(c);
+    }
+  }
 
   return 1;
 }
 
-/* A COMPLETER */
-int tourOrdi(plateau p, int o){
-  printf("TOUR DE L'ORDI\n");
-  return 1;
-}
+
+
